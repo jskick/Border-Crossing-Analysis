@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	title: {
+		text: "North American GDP"
+	},
+	axisX: {
+        title: "Year",
+		valueFormatString: "YYYY"
+	},
+	axisY2: {
+		title: "GDP",
+		prefix: "$",
+	},
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor: "pointer",
+		verticalAlign: "top",
+		horizontalAlign: "center",
+		dockInsidePlotArea: true,
+		itemclick: toogleDataSeries
+	},
+	data: [{
+		type:"line",
+		axisYType: "secondary",
+		name: "USA",
+		showInLegend: true,
+		markerSize: 0,
+		yValueFormatString: "$#,###",
+		dataPoints: [		
+			{ x: new Date(2009,00,00), y: 14712844084000},
+			{ x: new Date(2010,00,00), y: 14448933025000},
+			{ x: new Date(2011,00,00), y: 14992052727000},
+			{ x: new Date(2012,00,00), y: 15542581104000},
+			{ x: new Date(2013,00,00), y: 16197007349000},
+			{ x: new Date(2014,00,00), y: 16781849190000},
+			{ x: new Date(2015,00,00), y: 17521746534000},
+			{ x: new Date(2016,00,00), y: 18219297584000},
+			{ x: new Date(2017,00,00), y: 18707188235000},
+			{ x: new Date(2018,00,00), y: 19485393853000},
+			{ x: new Date(2019,00,00), y: 20544343456936.50},
+		]
+	},
+	{
+		type: "line",
+		axisYType: "secondary",
+		name: "CAN",
+		showInLegend: true,
+		markerSize: 0,
+		yValueFormatString: "$#,###",
+		dataPoints: [
+            { x: new Date(2009,00,00), y: 1549131208997.19},
+			{ x: new Date(2010,00,00), y: 1371153004986.44},
+			{ x: new Date(2011,00,00), y: 1613542812589.39},
+			{ x: new Date(2012,00,00), y: 1789140665202.84},
+			{ x: new Date(2013,00,00), y: 1823966686523.63},
+			{ x: new Date(2014,00,00), y: 1842018420853.10},
+			{ x: new Date(2015,00,00), y: 1801480123070.82},
+			{ x: new Date(2016,00,00), y: 1552899925233.71},
+			{ x: new Date(2017,00,00), y: 1526705529135.32},
+			{ x: new Date(2018,00,00), y: 1646867220617.47},
+			{ x: new Date(2019,00,00), y: 1713341704877.01},
+		]
+	},
+	{
+		type: "line",
+		axisYType: "secondary",
+		name: "MEX",
+		showInLegend: true,
+		markerSize: 0,
+		yValueFormatString: "$#,###",
+		dataPoints: [
+            { x: new Date(2009,00,00), y: 1109989063586.62},
+			{ x: new Date(2010,00,00), y: 900045350649.35},
+			{ x: new Date(2011,00,00), y: 1057801295584.05},
+			{ x: new Date(2012,00,00), y: 1180489601957.61},
+			{ x: new Date(2013,00,00), y: 1201089987015.45},
+			{ x: new Date(2014,00,00), y: 1274443084716.57},
+			{ x: new Date(2015,00,00), y: 1314563967425.24},
+			{ x: new Date(2016,00,00), y: 1170564619927.69},
+			{ x: new Date(2017,00,00), y: 1077903618176.07},
+			{ x: new Date(2018,00,00), y: 1157736189998.15},
+			{ x: new Date(2019,00,00), y: 1220699479845.98},
+		]
+	}]
+});
+chart.render();
+
+function toogleDataSeries(e){
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	} else{
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

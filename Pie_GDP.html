@@ -1,0 +1,52 @@
+<html lang=en>
+<head>
+	<meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="myDiv2"></div>
+            <script>
+            Plotly.d3.csv(
+                "https://raw.githubusercontent.com/RHaile/final_project/master/data/NA_GDP_Growth.csv",
+                function(rows) {
+                    var c = [],
+                      g = [];
+                    
+                    for (var i = 0; i < rows.length; i++) {
+                        row = rows[i];
+                        c.push(row["Country Name"]);
+                        g.push(row["Growth"]);
+                    }
+
+                    Plotly.newPlot('myDiv2', {
+                        data: [
+                            {
+                                type: "pie",
+								values: g,
+                                labels: c,
+                                text: c,
+                                textinfo: "label+percent",
+                                hovertemplate: 
+                                "<b>%{text}:</b><br>" +
+                                ": %{v:%,.0f} percent growth between 1996-2018" +
+                                "<extra></extra>"
+                        }
+                    ],
+                    layout: {
+                        hovermode: "closest",
+                        hoverlabel: { bgcolor: "#FFF" }
+                        },
+                    config: { responsive: true }
+                });
+                }
+                );
+            </script>
+        </div>
+    </div>
+    </body>
+    </head>
+</html>

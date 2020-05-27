@@ -1,0 +1,53 @@
+<html lang=en>
+<head>
+	<meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="myDiv1"></div>
+            <script>
+            Plotly.d3.csv(
+                "https://raw.githubusercontent.com/RHaile/final_project/master/data/CleanedBorderdata_2008-2018.csv",
+                function(rows) {
+                    var b = [],
+                      v = [];
+                    
+                    for (var i = 0; i < rows.length; i++) {
+                        row = rows[i];
+                        b.push(row["Border"]);
+                        v.push(row["Value"]);
+                    }
+
+                    Plotly.newPlot('myDiv1', {
+                        data: [
+                            {
+                                type: "pie",
+                                values: v,
+                                labels: b,
+                                text: b,
+                                textinfo: "label+percent",
+                                insidetextorientation: "radial",
+                                hovertemplate: 
+                                "<b>%{text}</b><br>" +
+                                ": %{v} times" +
+                                "<extra></extra>"
+                        }
+                    ],
+                    layout: {
+                        hovermode: "closest",
+                        hoverlabel: { bgcolor: "#FFF" }
+                        },
+                    config: { responsive: true }
+                });
+                }
+                );
+            </script>
+        </div>
+    </div>
+    </body>
+    </head>
+</html>
